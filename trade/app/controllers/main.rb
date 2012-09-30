@@ -1,23 +1,32 @@
 def relative(path)
   File.join(File.expand_path(File.dirname(__FILE__)), path)
 end
+
 Views = relative('../views')
+
 require 'rubygems'
 require 'require_relative'
-require 'sinatra/base'
+require 'sinatra'
+require_relative('../models/user')
+#require_relative('../app')
 
-#require_relative('controllers/init.rb')
-#require_relative('../fixture.rb')
+include Models
+
+module Controllers
 
 class Main < Sinatra::Base
+
   enable :sessions
   set :views, Views
-#  use Controllers::Authentication
-#  use Controllers::TextController
+  #use Controllers::Authentication
+  #use Controllers::List
 
-  get("/") { haml :hello }
+  get "/" do
+    haml :index, :locals => {:users => Models::User.all}
+  end
+end
+Main.run!
 end
 
-Main.run!
 
 

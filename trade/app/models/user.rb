@@ -55,4 +55,18 @@ module Models
       taker.amount_of_credits += amount
     end
   end
+
+  @@users = []
+
+  def save
+    @@users << self
+  end
+
+  def delete
+    @@users.delete self
+  end
+
+  def self.all
+    @@users
+  end
 end
