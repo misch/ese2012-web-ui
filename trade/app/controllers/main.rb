@@ -8,14 +8,14 @@ require 'rubygems'
 require 'require_relative'
 require 'sinatra'
 require_relative('../models/user')
-#require_relative('../app')
+require_relative('../models/item')
+require_relative('../app')
 
-include Models
+
 
 module Controllers
 
-class Main < Sinatra::Base
-
+class Main < Sinatra::Application
   enable :sessions
   set :views, Views
   #use Controllers::Authentication

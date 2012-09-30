@@ -9,7 +9,6 @@ require 'haml'
 include Models
 
 class App < Sinatra::Base
-  Use Main
   enable :sessions
 
   #set :public_folder, 'app/public'

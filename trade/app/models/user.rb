@@ -1,7 +1,7 @@
 module Models
-
-  class User
+class User
     attr_accessor :name, :amount_of_credits, :items
+    @@users = []
 
     def initialize (name)
       self.name = name
@@ -20,10 +20,10 @@ module Models
     def add_Item(item)
       item.push(item)
     end
+
     def remove_item(item)
       items.delete(item)
     end
-
 
     def list_active_items()
       active_items = Array.new
@@ -54,19 +54,17 @@ module Models
       giver.amount_of_credits -= amount
       taker.amount_of_credits += amount
     end
-  end
 
-  @@users = []
+    def save
+      @@users << self
+    end
 
-  def save
-    @@users << self
-  end
+    def delete
+      @@users.delete self
+    end
 
-  def delete
-    @@users.delete self
-  end
-
-  def self.all
-    @@users
+    def self.all
+      @@users
+    end
   end
 end
