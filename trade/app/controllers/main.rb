@@ -1,8 +1,14 @@
-class Main
-  require 'rubygems'
-  require 'sinatra'
+require 'rubygems'
+require 'sinatra'
+require 'haml'
 
-  get "/" do
-    "Hello World"
+module Controllers
+
+  class Main < Sinatra::Application
+    get '/' do
+      haml :hello
+    end
   end
 end
+
+
