@@ -1,23 +1,31 @@
+def relative(path)
+  File.join(File.expand_path(File.dirname(__FILE__)), path)
+end
+
 require 'rubygems'
 require 'sinatra'
 require 'require_relative'
-require_relative('models/user')
-require_relative('models/item')
-require_relative('controllers/main')
+require '../app/models/user'
+require '../app/controllers/main'
+require '../app/controllers/authentication'
+require '../app/app'
 require 'haml'
 
-include Models
 
-class App < Sinatra::Base
+class App < Sinatra::Application
+  use Controllers::Main
+  use Controllers::Authentication
+#  use Controllers::Main
+
   enable :sessions
 
   #set :public_folder, 'app/public'
 
   configure :development do
-    jimi = User.new("Jimi")
+    jimi = Models::User.new("Jimi")
     jimi.save
 
-    jonny = User.new("Jonny")
+    jonny = Models::User.new("Jonny")
     jonny.save
   end
 end
