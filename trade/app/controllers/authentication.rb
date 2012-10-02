@@ -43,6 +43,11 @@ module Controllers
         end
       end
     end
+
+    post '/logout' do
+      session[:name] = nil
+      redirect '/'
+    end
   end
 end
 

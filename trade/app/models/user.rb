@@ -85,5 +85,10 @@ class User
     @@users.detect{|user| user.name == name}
     end
 
+    def activate_items
+      items.each do |item|
+        item.state = 'active'
+      end
+    end
   end
 end

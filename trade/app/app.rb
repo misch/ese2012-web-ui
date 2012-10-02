@@ -24,18 +24,26 @@ class App < Sinatra::Base
 
   configure :development do
     jimi = Models::User.new("Jimi", "jimi")
-    jimi.add_new_item_to_system("guitar", 50)
-    jimi.add_new_item_to_system("pick", 2)
-    items = jimi.items
-    items[0].state = 'active'
-    jimi.save
+    jimi.add_new_item_to_system("Guitar", 50)
+    jimi.add_new_item_to_system("Pick", 2)
+    jimi.add_new_item_to_system("VW bus",500)
+    jimi.add_new_item_to_system("Drugs",200)
+    jimi.activate_items
 
     johnny = Models::User.new("Johnny","johnny")
-    johnny.save
+    johnny.add_new_item_to_system("Doughnuts",3)
+    johnny.add_new_item_to_system("Cookies",7)
+    johnny.add_new_item_to_system("Asian bird nest",55)
+    johnny.add_new_item_to_system("Ben & Jerry's",20)
+    johnny.activate_items
 
     ese = Models::User.new("ese","ese")
-    ese.save
+    ese.add_new_item_to_system("Golden nothing",120)
+    ese.activate_items
 
+    jimi.save
+    johnny.save
+    ese.save
   end
 end
 

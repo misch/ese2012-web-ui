@@ -33,11 +33,8 @@ class Main < Sinatra::Application
   get "/home" do
     current_user = User.by_name(session[:name])
     users = Models::User.all.select {|user| !user.eql?(current_user)}
-    haml :home, :locals => {:users => users}
+    haml :home, :locals => {:users => users, :user => current_user}
   end
-
-
-  # should be managed by authentication controller
 
    get "/:name" do
      name = params[:name]
