@@ -2,14 +2,16 @@ def relative(path)
   File.join(File.expand_path(File.dirname(__FILE__)), path)
 end
 
-Views = relative('../views')
 
+Views = relative('../views')
 require 'rubygems'
 require 'require_relative'
 require 'sinatra'
 require_relative('../models/user')
 require_relative('../models/item')
-require_relative('../app')
+#require_relative('../app')
+
+include Models
 
 module Controllers
 
@@ -21,3 +23,6 @@ module Controllers
     end
   end
 end
+
+
+

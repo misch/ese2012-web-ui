@@ -18,17 +18,15 @@ module Controllers
 class Main < Sinatra::Application
   set :views, Views
 
-  User.new("Misch").save
-  User.new("Mei Ling").save
+  User.new("Misch", 124).save
+  User.new("Mei Ling", 456).save
   # How can we get that to do somewhere else? Didn't manage to get it working by now.
 
   get "/" do
     haml :home
   end
 
-  get "/login" do
-    haml :login
-  end
+
   # should be managed by authentication controller
 
    get "/users" do
@@ -38,7 +36,6 @@ class Main < Sinatra::Application
 
 
 end
-Main.run!
 end
 
 

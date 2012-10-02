@@ -1,12 +1,13 @@
 module Models
 class User
-    attr_accessor :name, :amount_of_credits, :items
+    attr_accessor :name, :amount_of_credits, :items, :password
     @@users = []
 
-    def initialize (name)
+    def initialize (name, password)
       self.name = name
       self.amount_of_credits = 100
       self.items = Array.new
+      self.password = password
     end
 
   # @param [String] name
@@ -66,5 +67,14 @@ class User
     def self.all
       @@users
     end
+
+    def self.login(name, password)
+       user = @@users[name]
+
+      return false if user.nil?
+
+      user.password == password
+    end
+
   end
 end

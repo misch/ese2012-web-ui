@@ -6,27 +6,28 @@ require 'rubygems'
 require 'sinatra'
 require 'require_relative'
 require '../app/models/user'
-require '../app/controllers/main'
-require '../app/controllers/authentication'
-require '../app/app'
+require 'controllers/main'
+require 'controllers/authentication'
 require 'haml'
 
+    include Controllers
+class App < Sinatra::Base
+  set :public_folder, 'app/public'
 
-class App < Sinatra::Application
-  use Controllers::Main
-  use Controllers::Authentication
-#  use Controllers::Main
+  puts root
+
+  use Main
+  use Authentication
 
   enable :sessions
 
-  #set :public_folder, 'app/public'
-
   configure :development do
-    jimi = Models::User.new("Jimi")
+    jimi = Models::User.new("Jimi",123)
     jimi.save
 
-    jonny = Models::User.new("Jonny")
+    jonny = Models::User.new("Jonny",321)
     jonny.save
+
   end
 end
 
