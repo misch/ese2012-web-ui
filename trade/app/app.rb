@@ -12,10 +12,6 @@ require 'haml'
 
 include Controllers
 class App < Sinatra::Base
-#  set :public_folder, 'app/public'
-
-  puts root
-
   use Authentication
   use Main
 
