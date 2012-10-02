@@ -5,12 +5,12 @@ end
 require 'rubygems'
 require 'sinatra'
 require 'require_relative'
-require '../app/models/user'
-require 'controllers/main'
-require 'controllers/authentication'
+require_relative('../app/models/user')
+require_relative('controllers/main')
+require_relative('controllers/authentication')
 require 'haml'
 
-    include Controllers
+include Controllers
 class App < Sinatra::Base
 #  set :public_folder, 'app/public'
 
