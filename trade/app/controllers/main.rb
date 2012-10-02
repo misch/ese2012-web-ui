@@ -18,22 +18,30 @@ module Controllers
 class Main < Sinatra::Application
   set :views, Views
 
-  User.new("Misch", 124).save
+  User.new("Misch", "124").save
   User.new("Mei Ling", 456).save
   # How can we get that to do somewhere else? Didn't manage to get it working by now.
 
+  before do
+    redirect "/login" unless session[:name]
+  end
+
   get "/" do
-    haml :home
+    redirect "/home"
+  end
+
+  get "/home" do
+    haml :home, :locals => {:users => Models::User.all}
   end
 
 
   # should be managed by authentication controller
 
-   get "/users" do
-    haml :list, :locals => {:users => Models::User.all}
-  end
-
-
+   get "/:name" do
+     name = params[:name]
+     user = User.by_name(name)
+     haml :item_list, :locals => {:user => user, :active_items => user.list_active_items, :inactive_items => user.items.select{|item| !item.active?}}
+   end
 
 end
 end

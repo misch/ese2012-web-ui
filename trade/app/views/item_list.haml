@@ -1,0 +1,8 @@
+%h1 #{user.name}
+%h2 Active items
+-for item in active_items
+  %li #{item.to_s}
+
+%h2 Inactive items
+-for item in inactive_items
+  %li #{item.to_s}

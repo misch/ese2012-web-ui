@@ -76,5 +76,13 @@ class User
       user.password == password
     end
 
+    def authenticate? (password)
+      self.password.eql?(password)
+    end
+
+    def self.by_name(name)
+    @@users.detect{|user| user.name == name}
+    end
+
   end
 end

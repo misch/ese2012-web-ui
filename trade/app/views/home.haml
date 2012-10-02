@@ -1,6 +1,11 @@
 #content
   .left.column
-    %h2 Welcome to our trade mark application!
+    %h1 Welcome to our trade mark application!
 
-    %a( href="/login") login
-    %a( href="/users") show user list
+    %h2 Here are all available items
+    - for user in users
+      - for active_item in user.list_active_items
+        %li
+          #{active_item.to_s}
+          %a{:href=>active_item.owner.name} Go to #{active_item.owner.name}
+          %input(type="submit" value="Buy")

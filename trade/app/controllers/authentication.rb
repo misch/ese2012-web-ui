@@ -21,6 +21,28 @@ module Controllers
     get "/login" do
       haml :login
     end
+
+    get '/logout' do
+      session[:name] = nil
+      redirect '/login'
+    end
+
+    post '/login' do
+      name = params[:username]
+      password = params[:password]
+
+      user = User.by_name(name)
+      if user == nil
+        "User not found."
+      else
+        if user.authenticate?(password)
+          session[:name] = name
+          redirect '/home'
+        else
+          "The password was wrong."
+        end
+      end
+    end
   end
 end
 

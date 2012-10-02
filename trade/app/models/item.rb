@@ -2,6 +2,7 @@ module Models
 
   class Item
     attr_accessor :name, :price, :state, :owner
+    @@items=[]
 
     def initialize( name, price, owner )
       self.name = name
@@ -24,7 +25,19 @@ module Models
     end
 
     def to_s
-      "#{item.name} (#{item.price})"
+      "#{self.name} (#{self.price})"
+    end
+
+    def save
+      @@items << self
+    end
+
+    def delete
+      @@items.delete self
+    end
+
+    def self.all
+      @@items
     end
   end
 end
