@@ -7,5 +7,8 @@
       - for active_item in user.list_active_items
         %li
           #{active_item.to_s}
-          %a{:href=>active_item.owner.name} Go to #{active_item.owner.name}
-          %input(type="submit" value="Buy")
+          %a{:href => active_item.owner.name} Go to #{active_item.owner.name}
+          %form(action="/buy" method="POST" )
+            %input(type = 'hidden' name = 'item'){ :value => active_item.name }
+            %input(type = 'hidden' name = 'seller'){ :value => user.name }
+            %input(type = 'submit' value = 'Buy')

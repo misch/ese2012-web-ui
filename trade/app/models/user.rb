@@ -14,7 +14,7 @@ class User
   # @param [String] price
   # @return [Item]
     def add_new_item_to_system(name, price)
-      new_item = Item.new( name, price, self )
+      new_item = Item.new( name, price, self)
       items.push(new_item)
     end
 
@@ -27,7 +27,7 @@ class User
     end
 
     def list_active_items()
-      active_items = Array.new
+      active_items = []
       items.each do |item|
         if item.active?()
           active_items.push(item)
@@ -46,8 +46,9 @@ class User
 
         self.items.push(item)
         seller.items.delete(item)
+        true
       else
-        "#{self.name}, you cannot buy this item!"
+        false
       end
     end
 

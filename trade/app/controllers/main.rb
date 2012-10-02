@@ -31,7 +31,9 @@ class Main < Sinatra::Application
   end
 
   get "/home" do
-    haml :home, :locals => {:users => Models::User.all}
+    current_user = User.by_name(session[:name])
+    users = Models::User.all.select {|user| !user.eql?(current_user)}
+    haml :home, :locals => {:users => users}
   end
 
 
@@ -43,6 +45,19 @@ class Main < Sinatra::Application
      haml :item_list, :locals => {:user => user, :active_items => user.list_active_items, :inactive_items => user.items.select{|item| !item.active?}}
    end
 
+   post "/buy" do
+     buyer = User.by_name(session[:name])
+     seller = User.by_name(params[:seller])
+     item = seller.items.detect {|item| item.name.eql?(params[:item])}
+
+     if buyer.buy_item(seller,item)
+       redirect "/home"
+     else
+       fail "#{buyer.name}, you cannot buy this item!"
+     end
+
+#     haml :buy, :locals => {:buyer => User.by_name(session[:name]), :seller => params[:seller], :item => params[:item]}
+   end
 end
 end
 
