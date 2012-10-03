@@ -25,7 +25,7 @@ module Models
     end
 
     def to_s
-      "#{self.name} (#{self.price})"
+      "#{self.name} (#{self.price} credits)"
     end
 
     def save

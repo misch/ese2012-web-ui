@@ -22,11 +22,6 @@ module Controllers
       haml :login
     end
 
-    get '/logout' do
-      session[:name] = nil
-      redirect '/login'
-    end
-
     post '/login' do
       name = params[:username]
       password = params[:password]

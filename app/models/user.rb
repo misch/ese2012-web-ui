@@ -52,6 +52,9 @@ class User
       end
     end
 
+#   @param [User] giver
+#   @param[User] taker
+#   @param [Integer] amount of credits
     def transact_credits(giver, taker, amount)
       giver.amount_of_credits -= amount
       taker.amount_of_credits += amount

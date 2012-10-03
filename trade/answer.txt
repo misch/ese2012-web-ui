@@ -1,8 +1,0 @@
-1) - the framework will receive the http request
-   - then the router will find the route that will accept this request. The first route that matches the request is invoked.
-   - the application code will be executed.
-   - then finally the action method will be given as http response.
-
-2) GET is conventionally idempotent. That means, it doesn't change the state, so results can be cached, bookmarks can be made safely etc. It has also a practical side. The google spider will follow all hyperlinks. Therefore if you have the 'delete' action as a hyperlink that does a 'get' request, then the google spider can delete all your data.
-
-3) In the view.
